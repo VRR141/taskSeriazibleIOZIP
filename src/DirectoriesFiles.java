@@ -5,17 +5,30 @@ import java.io.IOException;
 
 public class DirectoriesFiles {
 
+    /**
+     * DIRECTORIES FOR CREATE
+     */
     private String[] directories = {
             "Games/src", "Games/res", "Games/savegames", "Games/temp",
             "Games/src/main", "Games/src/test",
             "Games/res/drawables", "Games/res/vectors", "Games/res/icons"};
 
+    /**
+     * FILES FOR CREATE
+     */
+
     private String[] files = {"Main.java", "Utils.java"};
+    /**
+     * text file for logs
+     */
 
     private String tmp = "temp.txt";
 
     private StringBuffer sb = new StringBuffer();
 
+    /**
+     * create files
+     */
     protected void createFiles(){
         String p1 = "Games/src/main/";
         String p2 = "Games/temp/";
@@ -44,6 +57,10 @@ public class DirectoriesFiles {
 
     }
 
+    /**
+     * create directories
+     */
+
     protected void createDirectories(){
         for (String s: directories){
             File temp = new File(s);
@@ -55,7 +72,10 @@ public class DirectoriesFiles {
         }
     }
 
-    protected void writeTemp(){
+    /**
+     * logs writer
+     */
+    protected StringBuffer writeTemp(){
         String temp = directories[3].concat("/").concat(tmp);
         sb.append("__________________________________");
         try (FileWriter fw = new FileWriter(temp, true);
@@ -65,5 +85,6 @@ public class DirectoriesFiles {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return sb;
     }
 }
