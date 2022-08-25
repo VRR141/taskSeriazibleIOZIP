@@ -9,7 +9,7 @@ public class Main {
         thirdTask(); // HW 3
     }
 
-    private static void firstTask(){
+    private static void firstTask() {
         DirectoriesFiles df = new DirectoriesFiles();
         df.createDirectories();
         df.createFiles();
@@ -22,13 +22,13 @@ public class Main {
         gp.zip(1); // variable == 1 with delete, == 0 w/o delete
     }
 
-    private static void thirdTask(){
+    private static void thirdTask() {
         GameProgress gp = new GameProgress();
         gp.uNzip();
         System.out.println(gp.openProgress("Games/unZip/save1.dat"));
     }
 
-    private static boolean initGames(){
+    private static boolean initGames() {
         File file = new File("Games");
         return file.mkdir();
     }

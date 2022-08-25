@@ -29,17 +29,18 @@ public class DirectoriesFiles {
     /**
      * create files
      */
-    protected void createFiles(){
+    protected void createFiles() {
         String p1 = "Games/src/main/";
         String p2 = "Games/temp/";
-        for (String s: files){
+        for (String s : files) {
             String tempS = p1.concat(s);
             File temp = new File(tempS);
             try {
-                if (temp.createNewFile()){
+                if (temp.createNewFile()) {
                     sb.append(tempS).append(" file created \n");
                 } else {
-                    sb.append(tempS).append(" file NOT created \n");            }
+                    sb.append(tempS).append(" file NOT created \n");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -47,10 +48,11 @@ public class DirectoriesFiles {
         String tempS = p2.concat(tmp);
         File temp = new File(tempS);
         try {
-            if (temp.createNewFile()){
+            if (temp.createNewFile()) {
                 sb.append(tempS).append(" file created \n");
             } else {
-                sb.append(tempS).append(" file NOT created \n");            }
+                sb.append(tempS).append(" file NOT created \n");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,8 +63,8 @@ public class DirectoriesFiles {
      * create directories
      */
 
-    protected void createDirectories(){
-        for (String s: directories){
+    protected void createDirectories() {
+        for (String s : directories) {
             File temp = new File(s);
             if (temp.mkdir()) {
                 sb.append(s).append(" directory created \n");
@@ -75,12 +77,11 @@ public class DirectoriesFiles {
     /**
      * logs writer
      */
-    protected StringBuffer writeTemp(){
+    protected StringBuffer writeTemp() {
         String temp = directories[3].concat("/").concat(tmp);
         sb.append("__________________________________");
         try (FileWriter fw = new FileWriter(temp, true);
-             BufferedWriter bw = new BufferedWriter(fw))
-        {
+             BufferedWriter bw = new BufferedWriter(fw)) {
             bw.write(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();

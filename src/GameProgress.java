@@ -35,13 +35,13 @@ public class GameProgress implements Serializable {
         this.distance = distance;
     }
 
-    public GameProgress(){
+    public GameProgress() {
     }
 
     /**
      * Delete files from paths
      */
-    public void delete(){
+    public void delete() {
         for (String s : paths) {
             File temp = new File(s);
             if (temp.delete()) {
@@ -60,7 +60,7 @@ public class GameProgress implements Serializable {
             zipFiles("Games/savegames/zipFiles.zip", paths);
             delete();
         }
-        if (variable == 0){
+        if (variable == 0) {
             zipFiles("Games/savegames/zipFiles.zip", paths);
         }
     }
@@ -68,17 +68,17 @@ public class GameProgress implements Serializable {
     /**
      * unZip files from Games/savegames/zipFiles.zip -> Games/unZip
      */
-    public void uNzip(){
+    public void uNzip() {
         openZip("Games/savegames/zipFiles.zip", "unZip");
     }
 
     /**
      * save Serializable GameProgress objects from List to path
      */
-    public void saveGames(){
+    public void saveGames() {
         createGameProgress();
-        for (int i = 0; i < list.size(); i++){
-            var temp = (path.concat(String.valueOf(i+1)).concat(".dat"));
+        for (int i = 0; i < list.size(); i++) {
+            var temp = (path.concat(String.valueOf(i + 1)).concat(".dat"));
             saveGame(temp, list.get(i));
         }
     }
@@ -86,7 +86,7 @@ public class GameProgress implements Serializable {
     /**
      * return GameProgress from saved files;
      */
-    public GameProgress openProgress(String path){
+    public GameProgress openProgress(String path) {
         try (FileInputStream fis = new FileInputStream(path);
              ObjectInputStream ois = new ObjectInputStream(fis)) {
             var gp = (GameProgress) ois.readObject();
@@ -103,8 +103,7 @@ public class GameProgress implements Serializable {
     private void openZip(String pathZip, String pathUnZip) {
         File tempFile = new File("Games/".concat(pathUnZip));
         tempFile.mkdir();
-        try (ZipInputStream zis = new ZipInputStream(new FileInputStream(pathZip)))
-        {
+        try (ZipInputStream zis = new ZipInputStream(new FileInputStream(pathZip))) {
             ZipEntry entry;
             String name;
             while ((entry = zis.getNextEntry()) != null) {
@@ -118,7 +117,7 @@ public class GameProgress implements Serializable {
                 zis.closeEntry();
                 fos.close();
             }
-        } catch (IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
@@ -139,7 +138,7 @@ public class GameProgress implements Serializable {
                 fis.close();
                 zos.closeEntry();
             }
-        } catch (IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
@@ -147,11 +146,11 @@ public class GameProgress implements Serializable {
     /**
      * save Serializable GameProgress object to path
      */
-    private void saveGame(String path, GameProgress gameProgress){
+    private void saveGame(String path, GameProgress gameProgress) {
         try (FileOutputStream fileOutputStream = new FileOutputStream(path);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(gameProgress);
-        } catch (IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
@@ -159,7 +158,7 @@ public class GameProgress implements Serializable {
     /**
      * create new GameProgressObjects
      */
-    private void createGameProgress(){
+    private void createGameProgress() {
         list = new ArrayList<>(Arrays.asList(
                 new GameProgress(25, 25, 25, 25),
                 new GameProgress(30, 30, 30, 30),
